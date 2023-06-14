@@ -7,31 +7,39 @@ public class Assignment2Application {
 
 	public static void main(String[] args) {
 		
+		int maxGuesses = 5;
+		int minNumber = 1;
+		int maxNumber = 100;
+
 		Random random = new Random();
-		int randomNumber = random.nextInt(100) + 1;
-		
+		int randomNumber = random.nextInt(maxNumber) + minNumber;
+
 		Scanner scanner = new Scanner(System.in);
-		
-		for (int guesses = 1; guesses <= 5; guesses++ ) {
-		
-		System.out.println("Pick a number between 1 and 100");
-		
-		
-		
-		System.out.println("Your guess is not between 1 and 100, please try again");
-		
-		System.out.println("Please pick a higher number");
-		
-		System.out.println("Please pick a lower number");
-		
-		System.out.println("You win!");
-		
-		System.out.println("You lose. The number to guess was: " + randomNumber);
+		System.out.println("Pick a number between " + minNumber + " and " + maxNumber);
 
-	}
+		for (int guesses = 1; guesses <= 5; guesses++) {
+			
+			int guess = scanner.nextInt();
+
+			if (guess < minNumber || guess > maxNumber) {
+				System.out.println("Your guess is not between " +  minNumber + " and " + maxNumber + ", please try again");
+
+			} else if (guess < randomNumber) {
+				System.out.println("Please pick a higher number");
+
+			} else if (guess > randomNumber) {
+				System.out.println("Please pick a lower number");
+			} else {
+				System.out.println("You win!");
+				scanner.close();
+				return;
+			}
+			if (guesses == maxGuesses) {
+				System.out.println("You lose. The number to guess was: " + randomNumber);
+
+			}
+
+		}
 		scanner.close();
-	
-		
-
-}
+	}
 }
