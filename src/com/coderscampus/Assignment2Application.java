@@ -6,8 +6,7 @@ import java.util.Scanner;
 public class Assignment2Application {
 
 	public static void main(String[] args) {
-		
-		int maxGuesses = 5;
+
 		int minNumber = 1;
 		int maxNumber = 100;
 
@@ -17,25 +16,32 @@ public class Assignment2Application {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Pick a number between " + minNumber + " and " + maxNumber);
 
-		for (int guesses = 1; guesses <= 5; guesses++) {
-			
+		int guesses = 0;
+		while (true) {
+
 			int guess = scanner.nextInt();
 
 			if (guess < minNumber || guess > maxNumber) {
-				System.out.println("Your guess is not between " +  minNumber + " and " + maxNumber + ", please try again");
-
+				System.out.println("Your guess is not between " + minNumber + " and " + maxNumber + ", please try again");
+				continue;
+				
 			} else if (guess < randomNumber) {
 				System.out.println("Please pick a higher number");
+				guesses++;
 
 			} else if (guess > randomNumber) {
 				System.out.println("Please pick a lower number");
+				guesses++;
+
 			} else {
 				System.out.println("You win!");
 				scanner.close();
 				return;
 			}
-			if (guesses == maxGuesses) {
+
+			if (guesses == 5) {
 				System.out.println("You lose. The number to guess was: " + randomNumber);
+				break;
 
 			}
 
