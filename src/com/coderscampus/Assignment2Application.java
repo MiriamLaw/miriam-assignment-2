@@ -14,34 +14,34 @@ public class Assignment2Application {
 		int randomNumber = random.nextInt(maxNumber) + minNumber;
 
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Pick a number between " + minNumber + " and " + maxNumber);
 
 		int guesses = 0;
-		while (true) {
+		while (guesses < 5) {
+			System.out.println("Pick a number between " + minNumber + " and " + maxNumber);
 
 			int guess = scanner.nextInt();
 
 			if (guess < minNumber || guess > maxNumber) {
-				System.out.println("Your guess is not between " + minNumber + " and " + maxNumber + ", please try again");
+				System.out
+						.println("Your guess is not between " + minNumber + " and " + maxNumber + ", please try again");
 				continue;
-				
-			} else if (guess < randomNumber) {
-				System.out.println("Please pick a higher number");
-				guesses++;
 
-			} else if (guess > randomNumber) {
-				System.out.println("Please pick a lower number");
-				guesses++;
-
-			} else {
+			} else if (guess == randomNumber) {
 				System.out.println("You win!");
 				scanner.close();
 				return;
+			} else {
+				if (guess < randomNumber) {
+					System.out.println("Please pick a higher number");
+				} else if (guess > randomNumber) {
+					System.out.println("Please pick a lower number");
+
+				}
+				guesses++;
 			}
 
 			if (guesses == 5) {
 				System.out.println("You lose. The number to guess was: " + randomNumber);
-				break;
 
 			}
 
